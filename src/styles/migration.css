@@ -1,0 +1,66 @@
+.migration-section {
+    position: relative;
+
+    /* 整个章节比一屏高很多 */
+    height: 2000vh;
+}
+
+.migration-stickyContainer {
+    position: sticky;
+    top: 0;
+
+    width: 100%;
+    height: 100vh;
+}
+
+.migration-chart{
+    position: relative;
+    width:100%;
+    height:100%;
+}
+
+.migration-main-scene{
+    position:absolute;
+    inset:0;
+}
+
+.migration-navigation-scene{
+
+    position:absolute;
+
+    left:40px;
+    top:40px;
+
+    width:200px;
+    height:160px;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    /* background: red; */
+}
+
+.migration-annotation-scene{
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+}
+
+.migration-annotation-text{
+
+    position:absolute;
+
+    left:85%;
+    top:50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width:320px;
+
+}
+

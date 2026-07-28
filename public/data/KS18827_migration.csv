@@ -1,0 +1,13 @@
+record,arrival,depature,location,country,type,Lat,Lon,explanation,distance_from_last_site(km),flight_time(hours),duration(days),remarks
+1,,2018-07-19,Meinypil’gynoon,Russia,breeding,62.55° N,177.08° E,勺嘴鹬重要繁殖地，Google Earth 搜索 Meinypilgyno 或 Meinypil'gyno Lagoon 更容易找到。,0,,,"67天停留在朝鲜 Yonan（整个迁徙过程中最长的停歇阶段）
+两段连续长距离飞行：
+朝鲜 → 雷州半岛：2,400 km
+雷州半岛 → 苏门答腊：2,300 km
+全程约 9,180 km
+历时约 3.5个月（103天）
+穿越 9个国家"
+2,2018-07-21,2018-07-29, Magadan,Russia,stopover,59.56° N,150.80° E,马加丹市，俄罗斯远东。,1285,,8,
+3,2018-07-31,2018-08-08,northern Sakhalin,Russia,stopover,52.80° N,143.20° E,不是具体地点，通常取萨哈林岛北部海岸中心位置即可。,1214,,8,
+4,2018-08-11,2018-10-17,Yonan,North Korea,stopover,39.91° N,126.29° E,即朝鲜黄海南道 Yon'an (연안/延安郡)，有时拼写为 Yonan。,1981,,67,
+5,2018-10-19,2018-10-28,Leizhou Peninsula,China,stopover,20.90° N,110.10° E,雷州半岛中心位置。如果需要湿地，可进一步定位到雷州湾。,2400,51,9,
+6,2018-10-30,,northern Sumatra,Indonesia,wintering,4.20° N,98.30° E,苏门答腊北部海岸的大致位置，迁徙研究通常不会指定单一地点。,2300,49,,

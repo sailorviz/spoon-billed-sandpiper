@@ -1,0 +1,11 @@
+record,arrival,depature,location,country,type,Lat,Lon,explanation,distance_from_last_site(km),flight_time(hours),duration(days),remarks
+1,,2024-04-04,Chachoengsao,Thailand,wintering,13.69° N,101.08° E,北柳府府治。若论文未说明具体湿地，可使用此坐标。,,,,"19天停留在Dongling, 换羽地
+飞跃黄海：≥700km
+历时约2个月
+"
+2,,,"Xinhui, Guangdong",China,stopover,22.46° N,113.03° E,广东江门市新会区。Lime 07 停留位置就在这一带。,,,7,
+3,,2024-04-20,"Zhangpu, Fujian",China,stopover,24.12° N,117.99° E,福建漳浦县。勺嘴鹬主要停留在沿海滩涂。,,,7,
+4,2024-04-25,2024-05-14,"Dongling (Rudong), Jiangsu",China,stopover,32.83° N,120.88° E,"这里实际上应为 Dongling, Rudong（东凌，江苏如东），属于黄海潮间带，是著名停歇地。很多论文直接写 Dongling。",,,19,
+5,2024-05-15,2024-05-22,Ryong Mae mudflat,North Korea,stopover,38.74° N,125.67° E,龙媒（Ryong Mae）滩涂，位于朝鲜西海岸南浦附近，是东亚—澳大利西亚迁飞路线的重要停歇地。,700,12,7,
+6,,,"Tyk Bay, Sakhalin Island",Russia,stopover,53.83° N,142.63° E,即 Tyk Bay (залив Тык)，位于萨哈林岛东北部。,,40,,
+7,2024-06-04,,Breeding site,Russia,breeding,62.55° N,177.08° E,如果指 SBS 项目中的繁殖地，一般就是 Meinypil'gyn Lagoon，这是目前最常见的繁殖地点坐标。,,,,
