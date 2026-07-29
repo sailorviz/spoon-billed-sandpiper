@@ -53,6 +53,7 @@ import { calculateStates } from "./calculateState";
 
 import { renderAnnotationScene } from "./renderAnnotationScene";
 import {renderNavigationScene} from "./renderNavigationScene";
+import { renderMainScene } from "./renderMainScene";
 
 const Migration = forwardRef((props, ref) => {
     const languageRef = useRef("en");
@@ -99,31 +100,31 @@ const Migration = forwardRef((props, ref) => {
 
         createMap(root, chart);
 
-        createPoints(
+        const points = createPoints(
             root,
             chart,
             migrationDataRef.current.pointData
         );
 
-        createLabels(
+        const labels = createLabels(
             root,
             chart,
             migrationDataRef.current.pointData
         );
 
-        createFlightLines(
+        const lines = createFlightLines(
             root,
             chart,
             migrationDataRef.current.lineData
         );
 
-        createMigrationTrack(
+        const track = createMigrationTrack(
             root,
             chart,
             migrationDataRef.current.migrationTrack
         );
 
-        createBird(
+        const bird = createBird(
             root,
             chart,
             migrationDataRef.current.coordinates,
@@ -132,7 +133,12 @@ const Migration = forwardRef((props, ref) => {
 
         return {
             root,
-            chart
+            chart,
+            bird: bird,
+            lines: lines,
+            track: track,
+            points: points,
+            labels: labels,
         }
 
     }
@@ -349,6 +355,8 @@ const Migration = forwardRef((props, ref) => {
             // render annotation
             renderAnnotationScene(state, annotationSceneRef.current, languageRef.current, narrative);
 
+            // render main scene
+            renderMainScene(state, mainSceneRef.current, migrationDataRef.current.migrationTrack);
         }
         
     }));

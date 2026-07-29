@@ -21,17 +21,10 @@ export function createBird(
 
     const birdDataItem = birdSeries.dataItems[0];
 
-    let birdSprite = null;
-
-    let bubbleContainer = null;
-    let bubbleLabel = null;
-
     //
     // Bird Bullet
     //
-    birdSeries.bullets.push(() => {
-
-        birdSprite = am5.Picture.new(root, {
+    const birdSprite = am5.Picture.new(root, {
 
             src: birdImage,
 
@@ -45,6 +38,8 @@ export function createBird(
 
         });
 
+    birdSeries.bullets.push(() => {
+
         return am5.Bullet.new(root, {
 
             sprite: birdSprite
@@ -53,52 +48,55 @@ export function createBird(
 
     });
 
+
+
     //
     // Bubble Bullet
     //
+    const bubbleLabel = am5.Label.new(root, {
+
+        text: "I've travelled 0 km over 0 days.",
+
+        fontSize: 13,
+
+        fill: am5.color(0xffffff)
+
+    });
+
+    const bubbleBackground = am5.RoundedRectangle.new(root, {
+
+        fill: am5.color(0x222222),
+
+        fillOpacity: 0.85,
+
+        cornerRadiusTL: 10,
+        cornerRadiusTR: 10,
+        cornerRadiusBL: 10,
+        cornerRadiusBR: 10
+
+    });
+
+    const  bubbleContainer = am5.Container.new(root, {
+
+        dx: 70,
+
+        dy: -50,
+
+        layout: root.verticalLayout,
+
+        paddingTop: 8,
+        paddingBottom: 8,
+        paddingLeft: 12,
+        paddingRight: 12,
+
+        background: bubbleBackground
+
+    });
+
+    bubbleContainer.children.push(bubbleLabel);
+
+
     birdSeries.bullets.push(() => {
-
-        bubbleLabel = am5.Label.new(root, {
-
-            text: "I've travelled 0 km over 0 days.",
-
-            fontSize: 13,
-
-            fill: am5.color(0xffffff)
-
-        });
-
-        const bubbleBackground = am5.RoundedRectangle.new(root, {
-
-            fill: am5.color(0x222222),
-
-            fillOpacity: 0.85,
-
-            cornerRadiusTL: 10,
-            cornerRadiusTR: 10,
-            cornerRadiusBL: 10,
-            cornerRadiusBR: 10
-
-        });
-
-        bubbleContainer = am5.Container.new(root, {
-
-            dx: 70,
-
-            dy: -50,
-
-            layout: root.verticalLayout,
-
-            paddingTop: 8,
-            paddingBottom: 8,
-            paddingLeft: 12,
-            paddingRight: 12,
-
-            background: bubbleBackground
-
-        });
-
-        bubbleContainer.children.push(bubbleLabel);
 
         return am5.Bullet.new(root, {
 
@@ -110,15 +108,15 @@ export function createBird(
 
     return {
 
-        birdSeries,
+        series: birdSeries,
 
-        birdDataItem,
+        dataItem: birdDataItem,
 
-        birdSprite,
+        sprite: birdSprite,
 
-        bubbleContainer,
+        bubble: bubbleContainer,
 
-        bubbleLabel
+        label: bubbleLabel,
 
     };
 

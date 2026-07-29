@@ -1,134 +1,96 @@
-function mainSceneScript(
-    animationState,
-    animationProgress,
-    migrationData
-) {
+export function getMainSceneScript(
+    narrativeState
+){
 
-    if (!animationState) {
+    if(!narrativeState){
         return null;
     }
 
-    // --------------------------------
-    // Overview
-    // --------------------------------
+    switch(narrativeState.id){
 
-    if (animationState.id === "overview") {
-        return {
-            map: {
-                mode: "overview",
-                focus: null
-            },
 
-            lines: {
-                visible: true
-            },
+        case "overview":
 
-            points: {
-                mode: "all"
-            },
+            return {
 
-            labels: {
-                mode: "all"
-            },
+                map:{
+                    mode:"overview"
+                },
 
-            track: {
-                visible: false,
-                progress: 0
-            },
+                points:{
+                    mode:"all"
+                },
 
-            bird: {
-                visible: false,
-                mode: "hidden",
-                progress: 0
-            },
+                labels:{
+                    mode:"all"
+                },
 
-            bubble: {
-                visible: false
-            }
-        };
+                lines:{
+                    mode:"show"
+                },
+
+                track:{
+                    mode:"hidden"
+                },
+
+                bird:{
+                    mode:"hidden"
+                },
+
+                bubble:{
+                    mode:"hidden"
+                }
+
+            };
+
+
+
+        case "migration":
+
+
+            return {
+
+                map:{
+                    mode:"followBird"
+                },
+
+
+                points:{
+                    mode:"passed"
+                },
+
+
+                labels:{
+                    mode:"passed"
+                },
+
+
+                lines:{
+                    mode:"hidden"
+                },
+
+
+                track:{
+                    mode:"followBird"
+                },
+
+
+                bird:{
+                    mode:"show"
+                },
+
+
+                bubble:{
+                    mode:"followBird"
+                }
+
+            };
+
+
+        default:
+
+            return null;
+
     }
 
-
-    // --------------------------------
-    // Migration
-    // --------------------------------
-
-    if (animationState.id === "travel") {
-        return {
-            map: {
-                mode: "follow-bird"
-            },
-
-            lines: {
-                visible: false
-            },
-
-            points: {
-                mode: "passed",
-                progress: animationProgress
-            },
-
-            labels: {
-                mode: "passed",
-                progress: animationProgress
-            },
-
-            track: {
-                visible: true,
-                progress: animationProgress
-            },
-
-            bird: {
-                visible: true,
-                mode: "move",
-                progress: animationProgress
-            },
-
-            bubble: {
-                visible: true,
-                progress: animationProgress
-            }
-        };
-    }
-
-
-    if (animationState.id === "inspection") {
-        return {
-            map: {
-                mode: "follow-bird"
-            },
-
-            lines: {
-                visible: false
-            },
-
-            points: {
-                mode: "passed",
-                progress: animationProgress
-            },
-
-            labels: {
-                mode: "passed",
-                progress: animationProgress
-            },
-
-            track: {
-                visible: true,
-                progress: animationProgress
-            },
-
-            bird: {
-                visible: true,
-                mode: "freeze",
-                progress: animationProgress
-            },
-
-            bubble: {
-                visible: true,
-                progress: animationProgress
-            }
-        };
-    }
-
-    return null;
 }
