@@ -1,4 +1,4 @@
-import { animationTimeline } from "../../assets/data/timeline";
+import { animationTimeline } from "../../assets/data/timelineKS18827";
 import { getTimelineState } from "./getTimelineState";
 
 export function getAnimationState(animationProgress) {

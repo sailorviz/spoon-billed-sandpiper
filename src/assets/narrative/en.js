@@ -8,7 +8,7 @@ export default {
 
     },
 
-    // content key
+    // annotation content key
     intro:
         "Migration Journey of Spoon-billed Sandpiper",
 
@@ -36,5 +36,17 @@ export default {
 
     conservation:
         "Important Stopover Site",
+
+    
+    // bubble content key(inspection, locationID)
+    1:
+        "1",
+    4:
+        "4",
+    5:
+        "5",
+    6:
+        "6",
+
 
 }

@@ -4,7 +4,7 @@ export default {
 
     birdBubble(distance, days) {
 
-        return `我已经飞行了 ${distance} 公里，历时 ${days} 天。`;
+        return `我已经飞行了 ${distance} 公里，出发 ${days} 天。`;
 
     },
 

@@ -1,4 +1,4 @@
-import { annotationTimelines } from "../../assets/data/timeline";
+import { annotationTimelines } from "../../assets/data/timelineKS18827";
 import { getTimelineState } from "./getTimelineState";
 
 // export function getAnnotationState(

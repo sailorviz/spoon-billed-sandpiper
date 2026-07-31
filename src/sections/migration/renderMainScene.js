@@ -1,19 +1,25 @@
-import {
-    useRef,
-} from "react";
-
+import { useRef } from "react";
 import { getMainSceneScript } from "../../utils/script/mainSceneScript";
 import {getBirdSampleIndex} from "../../utils/script/navBirdScript";
+import { getTotalDistance } from "../../utils/parameter_resolver/getTotalDistance";
+import { getTotalDays } from "../../utils/parameter_resolver/getTotalDays";
+
 import { renderNavBird } from "../../utils/render/renderNavBird";
 import { renderbubble } from "../../utils/render/renderBubble";
+import { renderLabels } from "../../utils/render/renderLabels";
+import { renderPoints } from "../../utils/render/renderPoints";
+import { renderMigrationTrack } from "../../utils/render/renderMigrationTrack";
+
+import { animationTimeline } from "../../assets/data/timelineKS18827";
 
 
 export function renderMainScene(
   state,
   scene,
   migrationTrack,
+  pointData,
   language,
-  narrative
+  narrative,
 ){
 
   // safe guard
@@ -37,8 +43,6 @@ export function renderMainScene(
   }
 
   // 赋值
-  const currentSampleIndexRef = useRef(null);
-
   const bird = scene.bird;
   const chart = scene.chart;
   const bubbleLabel = bird.label;
@@ -46,6 +50,8 @@ export function renderMainScene(
   const track = scene.track;
   const labels = scene.labels;
   const points = scene.points;
+
+  let currentSampleIndex = null;
 
 
   // render bird
@@ -69,46 +75,45 @@ export function renderMainScene(
       migrationTrack
     );
 
-    if (!birdIndexResult) {
-      // 处理异常情况，比如跳过渲染或使用默认值
-      console.warn('无法获取鸟的样本索引，跳过渲染');
-      return;
+    if (birdIndexResult) {
+
+      currentSampleIndex =
+        birdIndexResult.currentSampleIndex;
+
+      const nextSampleIndex =
+          birdIndexResult.nextSampleIndex;
+
+      const currentSample =
+          migrationTrack.samples[currentSampleIndex];
+
+      const nextSample =
+        migrationTrack.samples[nextSampleIndex];
+      
+      renderNavBird(bird, chart, currentSample, nextSample);
     }
-
-    const {currentSampleIndex, nextSampleIndex} = getBirdSampleIndex(
-      state.travelProgress,
-      state.animationState,
-      migrationTrack
-    );
-
-    currentSampleIndexRef.current = currentSampleIndex;
-
-    const currentSample =
-        migrationTrack.samples[currentSampleIndex];
-
-    const nextSample =
-      migrationTrack.samples[nextSampleIndex];
-    
-    renderNavBird(bird, chart, currentSample, nextSample);
 
   }
 
   // render bubble
   if (mode.bubble.mode === "followBird") {
-    const distance = getDistance();
-    const days = getDays();
-    const flightTime = getFlightTime();
-    const duration = getDuration();
-    const location = getLocation();
+    const distance = getTotalDistance(
+      state.animationState,
+      animationTimeline,
+      pointData,
+      state.travelProgress
+    );
+
+    // console.log(distance);
+    const days = getTotalDays(
+      state.animationState, 
+      state.travelProgress, 
+      pointData);
 
     renderbubble(
       state.animationState,
       bubbleLabel,
       distance,
       days,
-      flightTime,
-      location,
-      duration,
       language,
       narrative
     );
@@ -142,60 +147,98 @@ export function renderMainScene(
 
   } else if (mode.track.mode === "followBird") {
     
-    renderTrack(state.travelProgress);
+    track.series.set(
+        "visible",
+        true
+    );
+
+    renderMigrationTrack(
+        track.dataItem,
+        migrationTrack,
+        currentSampleIndex
+    );
 
   }
 
   // render labels
   if (mode.labels.mode === "all") {
 
+    labels.items.forEach(item=>{
 
+        item.label.set(
+            "visible",
+            true
+        );
+    
+    });
 
   } else if (mode.labels.mode === "passed") {
     
-
+    renderLabels(labels, currentSampleIndex);
 
   }  
 
   // render points
   if (mode.points.mode === "all") {
 
+    points.items.forEach(item=>{
 
+        item.point.set(
+            "visible",
+            true
+        );
+    
+    });
 
   } else if (mode.points.mode === "passed") {
     
-
+    renderPoints(points, currentSampleIndex);
 
   }
 
-  // render map
+  // render camera
   if (mode.map.mode === "overview") {
 
-
+      chart.zoomToGeoPoint(
+          {
+              longitude:0,
+              latitude:0
+          },
+          1,
+          true,
+          1000
+      );
 
   } else if (mode.map.mode === "followBird") {
-            // currentSampleIndexRef.current
 
-            
-            //     const cameraIndex =
-            //         Math.min(
-            //             currentIndex + 50,
-            //             coordinatesRef.current.length - 1
-            //         );
+      const cameraIndex =
+          Math.min(
+              currentSampleIndex + 50,
+              migrationTrack.samples.length - 1
+          );
 
-            //     const [cameraLon, cameraLat] =
-            //         coordinatesRef.current[cameraIndex];
-
-            //     // "camera follow", change center of this map
-            //     chart.zoomToGeoPoint(
-            //         {
-            //             longitude: cameraLon,
-            //             latitude: cameraLat
-            //         },
-            //         3,
-            //         true,
-            //         0
-            //     );
+      const cameraLon =
+          migrationTrack.samples[cameraIndex]?.longitude;
+      const cameraLat =
+          migrationTrack.samples[cameraIndex]?.latitude;
+      
+      // "camera follow", change center of this map
+      chart.zoomToGeoPoint(
+          {
+              longitude: cameraLon,
+              latitude: cameraLat
+          },
+          3,
+          true,
+          0
+      );
 
   }
 }
+
+// zoomToGeoPoint(
+//     geoPoint,
+//     zoomLevel,
+//     animate,
+//     duration
+// )

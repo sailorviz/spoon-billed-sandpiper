@@ -1,4 +1,4 @@
-record,arrival,depature,location,country,type,Lat,Lon,explanation,distance_from_last_site(km),flight_time(hours),duration(days),remarks
+record,arrival,departure,location,country,type,Lat,Lon,explanation,distance_from_last_site(km),flight_time(hours),duration(days),remarks
 1,,2018-07-19,Meinypil’gynoon,Russia,breeding,62.55° N,177.08° E,勺嘴鹬重要繁殖地，Google Earth 搜索 Meinypilgyno 或 Meinypil'gyno Lagoon 更容易找到。,0,,,"67天停留在朝鲜 Yonan（整个迁徙过程中最长的停歇阶段）
 两段连续长距离飞行：
 朝鲜 → 雷州半岛：2,400 km

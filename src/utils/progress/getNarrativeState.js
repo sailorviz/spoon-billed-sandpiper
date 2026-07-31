@@ -1,4 +1,4 @@
-import { narrativeTimeline } from "../../assets/data/timeline";
+import { narrativeTimeline } from "../../assets/data/timelineKS18827";
 import { getTimelineState } from "./getTimelineState";
 
 export function getNarrativeState(narrativeProgress) {

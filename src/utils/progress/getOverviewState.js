@@ -1,4 +1,4 @@
-import { overviewTimeline } from "../../assets/data/timeline";
+import { overviewTimeline } from "../../assets/data/timelineKS18827";
 import { getTimelineState } from "./getTimelineState";
 
 export function getOverviewState(

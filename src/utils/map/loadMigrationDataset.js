@@ -18,6 +18,8 @@ export async function loadMigrationDataset(csvPath) {
     const coordinates =
         migrationTrack.geometry.coordinates;
 
+    const locationSampleMap = 
+        migrationTrack.locationSampleMap;
 
     return {
 
@@ -28,6 +30,8 @@ export async function loadMigrationDataset(csvPath) {
         migrationTrack,
 
         coordinates,
+
+        locationSampleMap,
 
         birdOverlooking,
 

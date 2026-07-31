@@ -1,36 +1,33 @@
 export function renderbubble(
-    state, 
+    animationState, 
     bubbleLabel, 
     totalDistance, 
     totalDays, 
-    flightTime, 
-    location,
-    duration,
     language, 
     narrative) {
   
-    if(state === "travel"){
+    if(animationState.type === "travel"){
 
         bubbleLabel.set(
             "text",
-            birdBubble(
-                totalDistance,
-                totalDays,
-                flightTime
-            )
+            narrative[language]?.birdBubble(totalDistance, totalDays)
         );
 
     }
 
 
-    if(state === "inspection"){
+    if(animationState.type === "inspection"){
+        
+        const command = animationState.locationID;
+
+        const text =
+        command
+            ? narrative[language]?.[command]
+            : null;
 
         bubbleLabel.set(
             "text",
-            locationBubble(
-                location,
-                duration
-            )
+            text
         );
 
     }

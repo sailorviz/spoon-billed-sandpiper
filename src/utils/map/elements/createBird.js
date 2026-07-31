@@ -106,6 +106,12 @@ export function createBird(
 
     });
 
+    // 设置初始不显示
+    birdSeries.set(
+        "visible",
+        false
+    );
+
     return {
 
         series: birdSeries,

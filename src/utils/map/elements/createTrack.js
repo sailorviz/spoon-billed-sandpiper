@@ -1,25 +1,36 @@
 import * as am5 from "@amcharts/amcharts5";
 import * as am5map from "@amcharts/amcharts5/map";
 
+
 export function createMigrationTrack(
     root,
-    chart,
-    migrationTrack
+    chart
 ) {
 
     const trackSeries = chart.series.push(
-
         am5map.MapLineSeries.new(root, {})
-
     );
 
+
     trackSeries.data.setAll([
-        migrationTrack
+        {
+            geometry: {
+                type: "LineString",
+                coordinates: []
+            }
+        }
     ]);
+
+
+    const trackDataItem =
+        trackSeries.dataItems[0];
+
 
     return {
 
-        trackSeries
+        series: trackSeries,
+
+        dataItem: trackDataItem
 
     };
 

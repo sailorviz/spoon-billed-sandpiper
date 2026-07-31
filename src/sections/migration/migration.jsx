@@ -48,6 +48,7 @@ import { createBird } from "../../utils/map/elements/createBird";
 import { createNavBird } from "../../utils/map/elements/createNavBird";
 import { createLabels } from "../../utils/map/elements/createLabels";
 import { createMigrationTrack } from "../../utils/map/elements/createTrack";
+import { createNavTrack } from "../../utils/map/elements/createNavTrack";
 
 import { calculateStates } from "./calculateState";
 
@@ -103,13 +104,15 @@ const Migration = forwardRef((props, ref) => {
         const points = createPoints(
             root,
             chart,
-            migrationDataRef.current.pointData
+            migrationDataRef.current.pointData,
+            migrationDataRef.current.locationSampleMap
         );
 
         const labels = createLabels(
             root,
             chart,
-            migrationDataRef.current.pointData
+            migrationDataRef.current.pointData,
+            migrationDataRef.current.locationSampleMap
         );
 
         const lines = createFlightLines(
@@ -120,8 +123,7 @@ const Migration = forwardRef((props, ref) => {
 
         const track = createMigrationTrack(
             root,
-            chart,
-            migrationDataRef.current.migrationTrack
+            chart
         );
 
         const bird = createBird(
@@ -167,10 +169,11 @@ const Migration = forwardRef((props, ref) => {
         createPoints(
             root,
             chart,
-            migrationDataRef.current.pointData
+            migrationDataRef.current.pointData,
+            migrationDataRef.current.locationSampleMap
         );
 
-        createMigrationTrack(
+        createNavTrack(
             root,
             chart,
             migrationDataRef.current.migrationTrack
@@ -348,6 +351,7 @@ const Migration = forwardRef((props, ref) => {
 
             // calculate state
             const state = calculateStates(narrativeProgress);
+            // console.log(state);
 
             // render navigation
             renderNavigationScene(state, navigationSceneRef.current, migrationDataRef.current.migrationTrack);
@@ -356,7 +360,12 @@ const Migration = forwardRef((props, ref) => {
             renderAnnotationScene(state, annotationSceneRef.current, languageRef.current, narrative);
 
             // render main scene
-            renderMainScene(state, mainSceneRef.current, migrationDataRef.current.migrationTrack);
+            renderMainScene(state, 
+                mainSceneRef.current, 
+                migrationDataRef.current.migrationTrack, 
+                migrationDataRef.current.pointData,
+                languageRef.current, 
+                narrative);
         }
         
     }));

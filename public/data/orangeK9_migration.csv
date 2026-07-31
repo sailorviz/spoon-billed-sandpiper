@@ -1,4 +1,4 @@
-record,arrival,depature,location,country,type,Lat,Lon,explanation,distance_from_last_site(km),flight_time(hours),duration(days),remarks
+record,arrival,departure,location,country,type,Lat,Lon,explanation,distance_from_last_site(km),flight_time(hours),duration(days),remarks
 1,,2024-04-04,Chachoengsao,Thailand,wintering,13.69° N,101.08° E,北柳府府治。若论文未说明具体湿地，可使用此坐标。,,,,"19天停留在Dongling, 换羽地
 飞跃黄海：≥700km
 历时约2个月

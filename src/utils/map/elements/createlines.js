@@ -16,7 +16,7 @@ export function createFlightLines(
 
     return {
 
-        lineSeries
+        series: lineSeries
 
     };
 
