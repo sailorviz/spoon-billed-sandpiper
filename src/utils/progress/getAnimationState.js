@@ -1,7 +1,6 @@
-import { animationTimeline } from "../../assets/data/timelineKS18827";
 import { getTimelineState } from "./getTimelineState";
 
-export function getAnimationState(animationProgress) {
+export function getAnimationState(animationProgress, animationTimeline) {
 
     if (animationProgress === null) {
         return null;

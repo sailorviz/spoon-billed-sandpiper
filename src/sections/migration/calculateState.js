@@ -7,11 +7,19 @@ import { deriveAnnotationProgress } from "../../utils/progress/deriveAnnotationP
 import { getAnnotationState } from "../../utils/progress/getAnnotationState";
 import { deriveTravelProgress } from "../../utils/progress/deriveTravelProgress";
 
-export function calculateStates(narrativeProgress){
+export function calculateStates(narrativeProgress, timeline){
+    if (!narrativeProgress ||
+        !timeline) {
+        return;
+    }
+    
     // Narrative
 
     const narrativeState =
-        getNarrativeState(narrativeProgress);
+        getNarrativeState(
+            narrativeProgress, 
+            timeline.narrative
+        );
 
 
     // Overview
@@ -24,7 +32,8 @@ export function calculateStates(narrativeProgress){
 
     const overviewState =
         getOverviewState(
-            overviewProgress
+            overviewProgress,
+            timeline.overview
         );
 
 
@@ -38,7 +47,8 @@ export function calculateStates(narrativeProgress){
 
     const animationState =
         getAnimationState(
-            animationProgress
+            animationProgress,
+            timeline.animation
         );
     
     // travel
@@ -63,7 +73,8 @@ export function calculateStates(narrativeProgress){
             narrativeState,
             overviewProgress,
             animationState,
-            annotationProgress
+            annotationProgress,
+            timeline.annotation
         );
     
 

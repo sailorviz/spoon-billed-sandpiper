@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { getMainSceneScript } from "../../utils/script/mainSceneScript";
 import {getBirdSampleIndex} from "../../utils/script/navBirdScript";
 import { getTotalDistance } from "../../utils/parameter_resolver/getTotalDistance";
@@ -10,8 +9,6 @@ import { renderLabels } from "../../utils/render/renderLabels";
 import { renderPoints } from "../../utils/render/renderPoints";
 import { renderMigrationTrack } from "../../utils/render/renderMigrationTrack";
 
-import { animationTimeline } from "../../assets/data/timelineKS18827";
-
 
 export function renderMainScene(
   state,
@@ -20,6 +17,7 @@ export function renderMainScene(
   pointData,
   language,
   narrative,
+  animationTimeline
 ){
 
   // safe guard

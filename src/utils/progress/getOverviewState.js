@@ -1,8 +1,8 @@
-import { overviewTimeline } from "../../assets/data/timelineKS18827";
 import { getTimelineState } from "./getTimelineState";
 
 export function getOverviewState(
-    overviewProgress
+    overviewProgress,
+    overviewTimeline
 ) {
 
     if (overviewProgress === null) {

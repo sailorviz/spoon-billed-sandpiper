@@ -1,34 +1,4 @@
-import { annotationTimelines } from "../../assets/data/timelineKS18827";
 import { getTimelineState } from "./getTimelineState";
-
-// export function getAnnotationState(
-//     annotationProgress,
-//     animationState
-// ) {
-
-//     if (
-//         annotationProgress === null ||
-//         !animationState ||
-//         animationState.type !== "inspection"
-//     ) {
-//         return null;
-//     }
-
-//     const timeline =
-//         annotationTimelines[
-//             animationState.locationID
-//         ];
-
-//     if (!timeline) {
-//         return null;
-//     }
-
-//     return getTimelineState(
-//         annotationProgress,
-//         timeline
-//     );
-
-// }
 
 export function getAnnotationState(
 
@@ -38,7 +8,9 @@ export function getAnnotationState(
 
     animationState,
 
-    annotationProgress
+    annotationProgress,
+
+    annotationTimelines
 
 ) {
 

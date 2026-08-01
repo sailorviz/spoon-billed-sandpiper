@@ -29,7 +29,8 @@ import * as am5map from "@amcharts/amcharts5/map";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import worldLow from "@amcharts/amcharts5-geodata/worldLow";
 
-import { narrative } from "../../assets/narrative";
+import { migrationConfig } from "../../assets/config/migrationConfig";
+
 import { loadMigrationDataset } from "../../utils/map/loadMigrationDataset";
 import {loadMigrationData} from "../../utils/map/migrationParser";
 import {
@@ -38,7 +39,6 @@ import {
 import {
     buildMigrationTrack
 } from "../../utils/map/trackBuilder";
-
 
 
 import { createMap } from "../../utils/map/elements/createMap";
@@ -56,8 +56,10 @@ import { renderAnnotationScene } from "./renderAnnotationScene";
 import {renderNavigationScene} from "./renderNavigationScene";
 import { renderMainScene } from "./renderMainScene";
 
-const Migration = forwardRef((props, ref) => {
+const Migration = forwardRef(({birdId}, ref) => {
     const languageRef = useRef("en");
+    const configRef = useRef(null);
+    const migrationDataRef = useRef(null);
 
     const mainChartDivRef = useRef(null);
     const mainSceneRef = useRef(null);
@@ -70,10 +72,6 @@ const Migration = forwardRef((props, ref) => {
 
     const birdSpriteRef = useRef(null);
     const birdDataItemRef = useRef(null);
-
-    
-    const migrationDataRef = useRef(null);
-    const coordinatesRef = useRef([]);
 
 
 
@@ -255,12 +253,18 @@ const Migration = forwardRef((props, ref) => {
 
         async function init(){
             // load data
-            const migrationData =
-                await loadMigrationDataset(
-                    "/data/KS18827_migration.csv"
-                );
+            const config =
+                migrationConfig[birdId];
+
+            configRef.current = config;
+
+            const migrationData = await loadMigrationDataset(config.csvPath);
+
+            // const migrationData =
+            //     await loadMigrationDataset(
+            //         "/data/KS18827_migration.csv"
+            //     );
             migrationDataRef.current = migrationData;
-            coordinatesRef.current = migrationData.coordinates;
 
             // creat main scene
             mainSceneRef.current = initMainScene();
@@ -268,59 +272,6 @@ const Migration = forwardRef((props, ref) => {
             navigationSceneRef.current = initNavigationScene();
             // creat annotation scene
             annotationSceneRef.current = initAnnotationScene();
-
-
-
-
-
-
-            // function updateAnima() {
-
-            //     currentIndex++;
-
-            //     if (currentIndex >= coordinatesRef.current.length) {
-            //         currentIndex = 0;
-            //     }
-
-            //     // change dataItem, the direct location
-            //     const [longitude, latitude] = coordinatesRef.current[currentIndex];
-            //     const cameraIndex =
-            //         Math.min(
-            //             currentIndex + 50,
-            //             coordinatesRef.current.length - 1
-            //         );
-
-            //     const [cameraLon, cameraLat] =
-            //         coordinatesRef.current[cameraIndex];
-
-            //     birdDataItemRef.current.setAll({
-            //         longitude,
-            //         latitude
-            //     });
-
-            //     // change the picture's rotation
-            //     const current = coordinatesRef.current[currentIndex];
-            //     const next = coordinatesRef.current[currentIndex + 1];
-            //     const heading = calculateScreenHeading(chart, current, next);
-            //     const IMAGE_OFFSET = 90; // 从正北返回到0度
-            //     const rotation = heading + IMAGE_OFFSET;
-
-            //     birdSpriteRef.current.set("rotation", rotation);
-
-            //     // "camera follow", change center of this map
-            //     chart.zoomToGeoPoint(
-            //         {
-            //             longitude: cameraLon,
-            //             latitude: cameraLat
-            //         },
-            //         3,
-            //         true,
-            //         0
-            //     );
-
-            // }
-
-            // setInterval(updateAnima, 50);
 
         }
 
@@ -350,22 +301,35 @@ const Migration = forwardRef((props, ref) => {
             }
 
             // calculate state
-            const state = calculateStates(narrativeProgress);
+            const state = calculateStates(
+                narrativeProgress, 
+                configRef.current.timeline,
+            );
             // console.log(state);
 
             // render navigation
-            renderNavigationScene(state, navigationSceneRef.current, migrationDataRef.current.migrationTrack);
+            renderNavigationScene(
+                state, 
+                navigationSceneRef.current, 
+                migrationDataRef.current.migrationTrack);
 
             // render annotation
-            renderAnnotationScene(state, annotationSceneRef.current, languageRef.current, narrative);
+            renderAnnotationScene(
+                state, 
+                annotationSceneRef.current, 
+                languageRef.current, 
+                configRef.current.narrative.content);
 
             // render main scene
-            renderMainScene(state, 
+            renderMainScene(
+                state, 
                 mainSceneRef.current, 
                 migrationDataRef.current.migrationTrack, 
                 migrationDataRef.current.pointData,
                 languageRef.current, 
-                narrative);
+                configRef.current.narrative,
+                configRef.current.timeline.animation,
+            );
         }
         
     }));

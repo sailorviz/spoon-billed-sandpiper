@@ -1,7 +1,6 @@
-import { narrativeTimeline } from "../../assets/data/timelineKS18827";
 import { getTimelineState } from "./getTimelineState";
 
-export function getNarrativeState(narrativeProgress) {
+export function getNarrativeState(narrativeProgress, narrativeTimeline) {
 
     if (narrativeProgress === null) {
         return null;
