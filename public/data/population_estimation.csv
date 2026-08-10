@@ -1,0 +1,10 @@
+year,quantity_lowest,quantity_highest,quantity_best_estimated,unit,category,type
+1970s,2000,2800,,breeding pairs,pair,pair
+2000,,,1000,breeding pairs,pair,pair
+2003,402,572,,breeding pairs,pair,pair
+2005,350,380,,breeding pairs,pair,pair
+2008,150,320,,breeding pairs,pair,pair
+2009-2010,120,200,,breeding pairs,pair,pair
+2014-2019,360,620,490,mature individuals,mature,individual
+2021,240,620,490,mature individuals,mature,individual
+2026,260,320,,global individuals,global,individual
