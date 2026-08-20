@@ -1,17 +1,17 @@
 import PopulationIcon from "./PopulationIcon";
 
-import { getPopulationIconData } from "../../utils/population/getPopulationIconData";
-
+import { getDeclineRateIconData } from "../../utils/population/getDeclineRateIconData";
 import { createIconMatrix } from "../../utils/population/createIconMatrix";
 
 
-export default function PopulationIcons({
+export default function DeclineRateIcons({
     data
 }){
 
     // 决定每个 icon 的数据状态
     const iconData =
-        getPopulationIconData(data);
+        getDeclineRateIconData(data);
+
 
 
     // 决定 grid 排列
@@ -20,7 +20,7 @@ export default function PopulationIcons({
 
     return (
 
-        <div className="population-icon-grid">
+        <div className="decline-rate-icon-grid">
 
 
             {
@@ -28,7 +28,7 @@ export default function PopulationIcons({
                     (row,rowIndex)=>(
 
                         <div
-                            className="icon-row"
+                            className="decline-rate-icon-row"
                             key={rowIndex}
                         >
 

@@ -1,7 +1,7 @@
 import { loadMigrationData } from "./migrationParser";
 import { buildLineData } from "./lineBuilder";
 import { buildMigrationTrack } from "./trackBuilder";
-import birdOverlooking from "../../assets/bird_overlooking.png";
+import birdOverlooking from "../../assets/img/bird_overlooking.png";
 
 
 export async function loadMigrationDataset(csvPath) {

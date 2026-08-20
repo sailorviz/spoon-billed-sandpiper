@@ -13,7 +13,6 @@ export default function PopulationLegend({data}){
     const unit = data.unit;
     const category = data.category;
     const color = categoryColor[category];
-    console.log(color);
 
     const iconData = getPopulationIconData(data);
     const legendIconData = iconData[0];

@@ -1,32 +1,5 @@
 import Bird from "../../assets/icons/spoon_bill_outline.svg?react";
 
-// export default function PopulationIcon({ state, color }) {
-//   // 构建 SVG 的样式对象
-//   const svgStyle = {
-//     color: color ?? "#999",
-//     fill: state === "solid" ? "currentColor" : "none",
-//     stroke: state === "outline" ? "currentColor" : "none",
-//     strokeWidth: state === "outline" ? "20" : "0",
-//   };
-
-//   return (
-//     <div className="population-icon">
-//         <Bird style={svgStyle} />
-//     </div>
-//   );
-// }
-
-    // <div className="population-icon">
-    //   {type === "pair" ? (
-    //     <div className="pair-icon">
-    //       <Bird style={svgStyle} />  {/* 直接传给 SVG */}
-    //       <Bird style={svgStyle} />
-    //     </div>
-    //   ) : (
-    //     <Bird style={svgStyle} />
-    //   )}
-    // </div>
-
 export default function PopulationIcon({ state, color }) {
   const currentColor = color ?? "#999";
   
@@ -56,6 +29,11 @@ export default function PopulationIcon({ state, color }) {
       strokeWidth: "25",
       fillOpacity: "0.6", // 或使用 opacity: "0.6"
     };
+  } else if (!state) {
+    svgStyle = {
+      ...svgStyle,
+      fill: "currentColor",
+    }
   }
 
   return (

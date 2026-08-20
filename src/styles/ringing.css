@@ -1,0 +1,603 @@
+.ringing-section {
+    position: relative;
+
+    /* 整个章节比一屏高很多 */
+    height: auto;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.ringing-sticky-container {
+    position: sticky;
+
+    top: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    overflow: hidden;
+}
+
+.sticky-birds {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+
+.sticky-bird {
+    position: absolute;
+
+    width: calc(3vw * var(--bird-size));
+
+    transform:
+        translate(-50%, -50%);
+
+    opacity: var(--bird-opacity);
+
+    transition:
+        opacity 300ms ease,
+        filter 300ms ease;
+}
+
+.sticky-bird.active {
+    opacity: 1;
+
+    z-index: 10;
+
+    cursor: pointer;
+
+    filter:
+    drop-shadow(0 0 0.5vw rgba(255, 255, 255, 0.8))
+    drop-shadow(0 0 1vw rgba(255, 180, 50, 0.8));
+}
+
+.sticky-bird.selected {
+    z-index: 20;
+
+    filter:
+        drop-shadow(0 0 0.8vw rgba(255, 255, 255, 1))
+        drop-shadow(0 0 1.5vw rgba(255, 180, 50, 1));
+}
+
+
+.bird-shape {
+    width: 100%;
+    height: auto;
+
+    display: block;
+
+    position: relative;
+
+    transform:
+        rotate(var(--bird-rotation));
+
+    transition:
+        transform 300ms ease;
+}
+
+.sticky-bird.active .bird-shape {
+    transform: 
+        scale(2)
+        rotate(var(--bird-rotation));
+}
+
+.sticky-bird.selected .bird-shape {
+    transform: 
+    scale(3)
+    rotate(var(--bird-rotation));
+}
+
+/* 
+bird-actived relation
+*/
+.bird-tooltip {
+    position: absolute;
+
+    left: 100%;
+    bottom: 100%;
+
+    margin-left: 1vw;
+    margin-bottom: 1vw;
+
+    padding: 0.5vw 0.8vw;
+
+    background: white;
+
+    border: 1px solid #333;
+    border-radius: 0.5vw;
+
+    font-size: clamp(10px, 0.9vw, 16px);
+
+    white-space: nowrap;
+
+    color: #333;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    transform:
+        translate(
+            var(--tooltip-x, 0px),
+            calc(
+                var(--tooltip-y, 0px)
+                + 0.3vw
+            )
+        );
+
+    transition:
+        opacity 200ms ease,
+        transform 200ms ease;
+}
+
+
+.sticky-bird.active .bird-tooltip {
+    opacity: 1;
+
+    transform:
+        translate(
+            var(--tooltip-x, 0px),
+            var(--tooltip-y, 0px)
+        );
+}
+
+
+/* 
+bird profile
+*/
+
+.bird-profile-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.35);
+}
+
+
+.bird-profile {
+    width: min(70vw, 900px);
+    height: min(80vh, 760px);
+
+    background: white;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+.bird-profile-close {
+    position: absolute;
+
+    top: 1.2vw;
+    right: 1.2vw;
+
+    width: 2vw;
+    height: 2vw;
+
+    min-width: 24px;
+    min-height: 24px;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: clamp(20px, 1.8vw, 32px);
+
+    cursor: pointer;
+
+    z-index: 2;
+}
+
+.bird-profile-identity {
+    width: 100%;
+    height: 100%;
+
+    padding: 5vw;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.bird-profile-kicker {
+    font-size: clamp(10px, 0.8vw, 14px);
+
+    letter-spacing: 0.15em;
+
+    color: #777;
+}
+
+
+.bird-profile-id {
+    margin: 0.5vw 0 0;
+
+    font-size: clamp(40px, 5vw, 80px);
+
+    line-height: 1;
+
+    font-weight: 500;
+
+    color: #222;
+}
+
+
+.bird-profile-species {
+    margin-top: 0.7vw;
+
+    font-size: clamp(12px, 1vw, 18px);
+
+    letter-spacing: 0.08em;
+
+    color: #555;
+}
+
+.bird-profile-info {
+    margin-top: 4vw;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 2vw;
+
+    max-width: 80%;
+}
+
+
+.bird-profile-info-item {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.4vw;
+}
+
+
+.bird-profile-info-item span,
+.bird-profile-ring-grid span {
+    font-size: clamp(9px, 0.7vw, 12px);
+
+    letter-spacing: 0.1em;
+
+    color: #888;
+}
+
+
+.bird-profile-info-item strong {
+    font-size: clamp(12px, 1vw, 17px);
+
+    font-weight: 500;
+
+    color: #222;
+}
+
+.bird-profile-rings {
+    margin-top: 3vw;
+
+    padding-top: 1.5vw;
+
+    border-top: 1px solid #ddd;
+
+    max-width: 80%;
+}
+
+
+.bird-profile-section-label {
+    margin-bottom: 1vw;
+
+    font-size: clamp(9px, 0.7vw, 12px);
+
+    letter-spacing: 0.12em;
+
+    color: #888;
+}
+
+
+.bird-profile-ring-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr 1fr;
+
+    gap: 2vw;
+}
+
+
+.bird-profile-ring-grid > div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.4vw;
+}
+
+
+.bird-profile-ring-grid strong {
+    font-size: clamp(11px, 0.9vw, 16px);
+
+    font-weight: 500;
+
+    color: #222;
+}
+
+.bird-profile-records-button {
+    align-self: flex-start;
+
+    margin-top: auto;
+
+    padding: 0.8vw 0;
+
+    border: none;
+
+    border-bottom: 1px solid #333;
+
+    background: transparent;
+
+    font-size: clamp(10px, 0.8vw, 14px);
+
+    letter-spacing: 0.12em;
+
+    color: #222;
+
+    cursor: pointer;
+}
+
+
+.bird-profile-records-button span {
+    margin-left: 0.8vw;
+
+    transition: transform 200ms ease;
+}
+
+
+.bird-profile-records-button:hover span {
+    transform: translateX(0.3vw);
+}
+
+.bird-profile-records {
+    width: 100%;
+    height: 100%;
+
+    box-sizing: border-box;
+
+    padding: 4vw 5vw;
+
+    overflow-y: auto;
+}
+
+.bird-profile-records-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 1vw;
+}
+
+
+.bird-profile-back {
+    width: 2.5vw;
+    height: 2.5vw;
+
+    min-width: 28px;
+    min-height: 28px;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: clamp(18px, 1.5vw, 26px);
+
+    cursor: pointer;
+}
+
+
+.bird-profile-records-header h2 {
+    margin: 0.3vw 0 0;
+
+    font-size: clamp(24px, 2.5vw, 42px);
+
+    font-weight: 500;
+
+    line-height: 1;
+}
+
+.bird-records-timeline {
+    position: relative;
+
+    margin-top: 4vw;
+
+    padding-left: 3vw;
+}
+
+.bird-records-timeline::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+
+    left: 0.45vw;
+
+    width: 1px;
+
+    background: #ccc;
+}
+
+.bird-record {
+    position: relative;
+
+    display: flex;
+
+    gap: 2vw;
+
+    padding-bottom: 2.5vw;
+
+    cursor: pointer;
+}
+
+.bird-record-marker {
+    position: absolute;
+
+    left: -3vw;
+
+    top: 0.25vw;
+
+    width: 1vw;
+    height: 1vw;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+.bird-record-dot {
+    width: 0.55vw;
+    height: 0.55vw;
+
+    min-width: 6px;
+    min-height: 6px;
+
+    border-radius: 50%;
+
+    background: #333;
+
+    transition:
+        transform 200ms ease,
+        background 200ms ease;
+}
+
+.bird-record-content {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.25vw;
+
+    padding-bottom: 1vw;
+
+    transition:
+        transform 200ms ease
+        font-weight 200ms ease
+        scale 200ms ease;
+}
+
+.bird-record-date {
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.45vw;
+
+    font-size: clamp(11px, 0.85vw, 15px);
+
+    color: #4a4949;
+
+    font-weight: 500;
+
+    letter-spacing: 0.03em;
+
+    line-height: 1.2;
+}
+
+.bird-record-date-separator {
+    color: #aaa;
+
+    margin: 0 0.4vw;
+
+    font-size: 0.4em;
+
+}
+
+.bird-record-event {
+    font-size: clamp(16px, 1.2vw, 22px);
+
+    font-weight: 500;
+
+    color: #222;
+}
+
+.bird-record-location {
+    font-size: clamp(11px, 0.85vw, 15px);
+
+    color: #666;
+}
+
+.bird-record:hover .bird-record-dot {
+    transform: scale(1.8);
+}
+
+.bird-record:hover .bird-record-content {
+    transform: 
+        scale(1.2)
+        translateX(2.2vw);
+}
+
+
+
+
+/* 
+scrolly texts
+*/
+.ringing-scrolly-texts {
+    position: relative;
+
+    z-index: 2;
+
+    padding-bottom: 80vh;
+
+    pointer-events: none;
+
+}
+
+
+/*
+ * 每一个 text 是一个 Scrollama step
+ */
+
+.ringing-trigger-step {
+    height: 20vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 100vh;
+
+    background: #333;
+
+    pointer-events: none;
+}
+
+.ringing-scrolly-text {
+    max-width: 40vw;
+
+    padding: 1.5vw 2vw;
+
+    background: white;
+
+    opacity: 1;
+
+}
