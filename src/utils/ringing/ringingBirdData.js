@@ -11,9 +11,8 @@ function createBirdData(count = 50) {
             x: 5 + Math.random() * 90,
             y: 5 + Math.random() * 90,
 
-            // orientation
-            rotation:
-                (Math.random() + Math.random() - 1) * 20,
+            mirrored:
+                Math.random() < 0.5,
 
             // depth
             depth,

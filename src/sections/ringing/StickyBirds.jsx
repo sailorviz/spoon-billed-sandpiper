@@ -304,8 +304,8 @@ function StickyBird({
                     Math.round(bird.depth * 9),
 
 
-                "--bird-rotation":
-                    `${bird.rotation}deg`,
+                "--bird-scale-x":
+                    bird.mirrored ? -1 : 1,
 
                 "--bird-size":
                     bird.size,
