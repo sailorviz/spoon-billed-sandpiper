@@ -326,11 +326,6 @@ function StickyBird({
             onClick={onClick}
         >
 
-            {/* <div
-                ref={birdShapeRef}
-                className="bird-shape"
-            /> */}
-
             <img
                 ref={birdShapeRef}
                 className="bird-shape"

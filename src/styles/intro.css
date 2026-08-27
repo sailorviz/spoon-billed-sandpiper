@@ -201,3 +201,33 @@
 .audio-control-label {
     white-space: nowrap;
 }
+
+
+/* 
+language control
+*/
+
+.language-switch {
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+}
+
+
+.language-switch button {
+    border: none;
+    background: none;
+    padding: 0;
+
+    font: inherit;
+    cursor: pointer;
+
+    opacity: 0.6;
+}
+
+
+.language-switch button.active {
+    opacity: 1;
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+}

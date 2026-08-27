@@ -8,7 +8,7 @@ import { distinctionTimeline as timelineData }  from "../utils/distinction/disti
 
 
 
-export default function ScrollForDisdinctionTimeline() {
+export default function ScrollForDisdinctionTimeline({language}) {
 
     const scrollerRef = useRef(null);
     const sectionRef = useRef(null);

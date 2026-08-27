@@ -6,7 +6,10 @@ import "../styles/intro.css";
 import { introScenes } from "../assets/narrative/introScenes";
 
 
-export default function ScrollForIntro({ language }) {
+export default function ScrollForIntro({ 
+    language,
+    setLanguage
+}) {
 
     const scrollerRef = useRef(null);
     const introSectionRef = useRef(null);
@@ -180,29 +183,50 @@ export default function ScrollForIntro({ language }) {
                       </div>
 
                     {index === 0 && (
-
-                        <button
-                            className="audio-control audio-control-hero"
-                            onClick={toggleSound}
-                            aria-label={
-                                soundEnabled
-                                    ? "Turn sound off"
-                                    : "Turn sound on"
-                            }
-                        >
-
-                            <span className="audio-control-icon">
-                                {soundEnabled ? "🔊" : "🔇"}
-                            </span>
-
-                            <span className="audio-control-label">
-                                {soundEnabled
-                                    ? "Sound on"
-                                    : "Enable sound"
+                        <>
+                            <button
+                                className="audio-control audio-control-hero"
+                                onClick={toggleSound}
+                                aria-label={
+                                    soundEnabled
+                                        ? "Turn sound off"
+                                        : "Turn sound on"
                                 }
-                            </span>
+                            >
 
-                        </button>
+                                <span className="audio-control-icon">
+                                    {soundEnabled ? "🔊" : "🔇"}
+                                </span>
+
+                                <span className="audio-control-label">
+                                    {soundEnabled
+                                        ? "Sound on"
+                                        : "Enable sound"
+                                    }
+                                </span>
+
+                            </button>
+
+                            
+                            <div className="language-switch">
+
+                                <button
+                                    className={language === "en" ? "active" : ""}
+                                    onClick={() => setLanguage("en")}
+                                >
+                                    en
+                                </button>
+
+                                <button
+                                    className={language === "zh" ? "active" : ""}
+                                    onClick={() => setLanguage("zh")}
+                                >
+                                    中
+                                </button>
+
+                            </div>                           
+                        </>
+                     
 
                     )}
 

@@ -3,7 +3,7 @@ import Migration from "../sections/migration/migration";
 import "../styles/migration.css"
 import { getNarrativeProgress } from "../utils/progress/getNarrativeProgress";
 
-export default function ScrollForMigration() {
+export default function ScrollForMigration({language}) {
 
     const migrationRef = useRef(null);
     const sectionRef = useRef(null);

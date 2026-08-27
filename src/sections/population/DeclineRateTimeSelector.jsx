@@ -388,32 +388,6 @@ export default function DeclineRateTimeline({
 
                         return (
 
-                            // <div
-
-                            //     key={i}
-
-                            //     className={
-                            //         i === index
-                            //         ? "timeline-segment active"
-                            //         : "timeline-segment"
-                            //     }
-
-                            //     style={{
-
-                            //         left:
-                            //             `${left}%`,
-
-                            //         width:
-                            //             `${width}%`
-
-                            //     }}
-
-                            //     onClick={() => {
-                            //         setIndex(i);
-                            //     }}
-
-                            // />
-
                             <div
                                 key={i}
                                 className={
