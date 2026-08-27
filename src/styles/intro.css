@@ -1,9 +1,11 @@
 .intro-section {
     position: relative;
 
-    /* 整个章节比一屏高很多 */
     height: auto;
+
+    margin-bottom: 30vh;
 }
+
 
 /* =========================
    BACKGROUND
@@ -18,6 +20,8 @@
     height: 100vh;
 
     overflow: hidden;
+
+    z-index: 1;
 }
 
 
@@ -67,6 +71,8 @@
 
     display: flex;
 
+    flex-direction: column;
+
     align-items: center;
     justify-content: center;
 }
@@ -80,4 +86,118 @@
     background: white;
 
     opacity: 1;
+}
+
+
+/* =========================
+   AUDIO CONTROL
+========================= */
+
+.audio-control {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    cursor: pointer;
+
+    color: white;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    backdrop-filter: blur(6px);
+
+    font-family: inherit;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.audio-control:hover {
+    background: rgba(0, 0, 0, 0.65);
+}
+
+
+.audio-control:active {
+    transform: scale(0.96);
+}
+
+
+/* =========================
+   HERO AUDIO CONTROL
+========================= */
+
+.audio-control-hero {
+    position: relative;
+
+    gap: 0.6vw;
+
+    margin-top: 1.5vw;
+
+    padding: 0.8vw 1.2vw;
+
+    border-radius: 999px;
+
+    font-size: clamp(
+        0.8rem,
+        1vw,
+        1rem
+    );
+}
+
+
+/* =========================
+   COMPACT AUDIO CONTROL
+========================= */
+
+.audio-control-compact {
+    position: fixed;
+
+    top: 2vw;
+    left: 2vw;
+
+    z-index: 3;
+
+    width: 2.8vw;
+    height: 2.8vw;
+
+    min-width: 32px;
+    min-height: 32px;
+
+    padding: 0;
+
+    border-radius: 50%;
+}
+
+
+/* =========================
+   AUDIO ICON
+========================= */
+
+.audio-control-icon {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: clamp(
+        0.9rem,
+        1.2vw,
+        1.2rem
+    );
+
+    line-height: 1;
+}
+
+
+/* =========================
+   AUDIO LABEL
+========================= */
+
+.audio-control-label {
+    white-space: nowrap;
 }

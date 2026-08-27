@@ -23,5 +23,15 @@ export const introScenes = [
         video: "video2"
     },
 
+    {
+        id: "intro-3",
+
+        text: {
+            zh: "它们每年往返于繁殖地和越冬地之间。",
+            en: "Every year, they travel between their breeding and wintering grounds."
+        },
+
+        video: "video3"
+    },
 
 ];

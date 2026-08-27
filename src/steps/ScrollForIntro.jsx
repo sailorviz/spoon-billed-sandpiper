@@ -9,9 +9,36 @@ import { introScenes } from "../assets/narrative/introScenes";
 export default function ScrollForIntro({ language }) {
 
     const scrollerRef = useRef(null);
+    const introSectionRef = useRef(null);
 
+    const [isIntroActive, setIsIntroActive] = useState(false);
     const [activeStep, setActiveStep] = useState(0);
+    const [soundEnabled, setSoundEnabled] = useState(false);
 
+    const toggleSound = () => {
+        setSoundEnabled((prev) => !prev);
+    };
+
+    useEffect(() => {
+
+        if (!introSectionRef.current) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsIntroActive(entry.isIntersecting);
+            },
+            {
+                threshold: 0.01
+            }
+        );
+
+        observer.observe(introSectionRef.current);
+
+        return () => {
+            observer.disconnect();
+        };
+
+    }, []);
 
     useEffect(() => {
 
@@ -74,7 +101,7 @@ export default function ScrollForIntro({ language }) {
 
     return (
 
-        <section className="intro-section">
+        <section ref={introSectionRef} className="intro-section">
 
             {/* =====================
                 BACKGROUND
@@ -99,7 +126,7 @@ export default function ScrollForIntro({ language }) {
                         {/* <video
                             src={scene.video}
                             autoPlay
-                            muted
+                            muted={!soundEnabled}
                             loop
                             playsInline
                         /> */}
@@ -110,6 +137,27 @@ export default function ScrollForIntro({ language }) {
                 ))}
 
             </div>
+
+
+            {isIntroActive && activeStep > 0 && (
+
+                <button
+                    className="audio-control audio-control-compact"
+                    onClick={toggleSound}
+                    aria-label={
+                        soundEnabled
+                            ? "Turn sound off"
+                            : "Turn sound on"
+                    }
+                >
+
+                    <span className="audio-control-icon">
+                        {soundEnabled ? "🔊" : "🔇"}
+                    </span>
+
+                </button>
+
+            )}
 
 
             {/* =====================
@@ -130,6 +178,33 @@ export default function ScrollForIntro({ language }) {
                       >
                           {scene.text[language]}
                       </div>
+
+                    {index === 0 && (
+
+                        <button
+                            className="audio-control audio-control-hero"
+                            onClick={toggleSound}
+                            aria-label={
+                                soundEnabled
+                                    ? "Turn sound off"
+                                    : "Turn sound on"
+                            }
+                        >
+
+                            <span className="audio-control-icon">
+                                {soundEnabled ? "🔊" : "🔇"}
+                            </span>
+
+                            <span className="audio-control-label">
+                                {soundEnabled
+                                    ? "Sound on"
+                                    : "Enable sound"
+                                }
+                            </span>
+
+                        </button>
+
+                    )}
 
                   </div>
 
