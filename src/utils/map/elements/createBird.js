@@ -57,7 +57,7 @@ export function createBird(
 
         text: "I've travelled 0 km over 0 days.",
 
-        fontSize: 13,
+        fontSize: 18,
 
         fill: am5.color(0xffffff)
 
@@ -67,12 +67,12 @@ export function createBird(
 
         fill: am5.color(0x222222),
 
-        fillOpacity: 0.85,
+        fillOpacity: 1,
 
-        cornerRadiusTL: 10,
-        cornerRadiusTR: 10,
-        cornerRadiusBL: 10,
-        cornerRadiusBR: 10
+        cornerRadiusTL: 12,
+        cornerRadiusTR: 12,
+        cornerRadiusBL: 12,
+        cornerRadiusBR: 12
 
     });
 
@@ -84,10 +84,10 @@ export function createBird(
 
         layout: root.verticalLayout,
 
-        paddingTop: 8,
-        paddingBottom: 8,
-        paddingLeft: 12,
-        paddingRight: 12,
+        paddingTop: 12,
+        paddingBottom: 15,
+        paddingLeft: 15,
+        paddingRight: 15,
 
         background: bubbleBackground
 
@@ -101,6 +101,39 @@ export function createBird(
         return am5.Bullet.new(root, {
 
             sprite: bubbleContainer
+
+        });
+
+    });
+
+
+    
+    const bubbleTail = am5.Graphics.new(root, {
+
+        dx: 90,
+
+        dy: -40,
+
+        fill: am5.color(0x222222),
+
+        fillOpacity: 1,
+
+        rotation: 90,
+
+        svgPath: `
+            M 0 0
+            L 40 0
+            L 20 30
+            Z
+        `
+
+    });
+
+    birdSeries.bullets.push(() => {
+
+        return am5.Bullet.new(root, {
+
+            sprite: bubbleTail
 
         });
 

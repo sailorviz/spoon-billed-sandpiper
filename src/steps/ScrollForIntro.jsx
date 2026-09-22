@@ -224,6 +224,14 @@ export default function ScrollForIntro({
                                     中
                                 </button>
 
+                            </div>
+
+                            <div className="scroll-down-indicator">
+                                <span className="scroll-down-text">
+                                    SCROLL DOWN
+                                </span>
+
+                                <span className="scroll-down-chevron"></span>
                             </div>                           
                         </>
                      

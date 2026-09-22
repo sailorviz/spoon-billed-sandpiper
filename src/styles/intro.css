@@ -231,3 +231,54 @@ language control
     text-decoration: underline;
     text-underline-offset: 0.25em;
 }
+
+
+/* 
+scroll down indicator
+*/
+
+.scroll-down-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 1vh;
+    margin-top: 20vh;
+
+    pointer-events: none;
+}
+
+.scroll-down-text {
+    font-size: clamp(0.7rem, 1vw, 1rem);
+
+    font-weight: 400;
+    letter-spacing: 0.02em;
+
+    white-space: nowrap;
+}
+
+.scroll-down-chevron {
+    width: 0.8vw;
+    height: 0.8vw;
+
+    min-width: 8px;
+    min-height: 8px;
+
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+
+    transform: rotate(45deg);
+
+    animation: scrollChevron 1.5s ease-in-out infinite;
+}
+
+@keyframes scrollChevron {
+    0%,
+    100% {
+        transform: rotate(45deg) translate(0, 0);
+    }
+
+    50% {
+        transform: rotate(45deg) translate(0.2vw, 0.2vw);
+    }
+}
